@@ -1,13 +1,11 @@
 name: 'Basic'
 
-on:
-  push:
-    branches:
-    - main
+on: [ pull, 'pull_request' ]
 
 jobs:
-  build-test:
+  first:
     name: 'First Job'
+    if: github.event_name = 'pull_request'
 
     strategy:
       matrix:
