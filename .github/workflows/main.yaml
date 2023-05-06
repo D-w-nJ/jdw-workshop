@@ -26,4 +26,4 @@ jobs:
       env:
         WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
         WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOM_ID }}
-        MARKDOWN_MESSAGE: "**Hello, 두봇! You just ran an action from ${{ github.repository }}.**"
+        MARKDOWN_MESSAGE: "**Hello, dobot! You just ran an action from ${{ github.repository }}.**"
