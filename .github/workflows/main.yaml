@@ -1,6 +1,6 @@
 name: 'Basic'
 
-on: [ pull, 'pull_request' ]
+on: [ 'push', 'pull_request' ]
 
 jobs:
   first:
