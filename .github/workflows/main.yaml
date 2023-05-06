@@ -21,9 +21,9 @@ jobs:
           "text": "안녕하세여 깃헙 액션에서 보내는 두봇입니다."
         }'
 
-  - name: Send message to Webex using pre-built action
-    uses: chrivand/action-webex-js@main
-    env:
+   - name: Send message to Webex using pre-built action
+     uses: chrivand/action-webex-js@main
+     env:
       WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
       WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOM_ID }}
       MARKDOWN_MESSAGE: "**Hello, dobot! You just ran an action from ${{ github.repository }}.**"
