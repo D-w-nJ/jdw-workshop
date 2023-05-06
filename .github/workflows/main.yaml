@@ -5,18 +5,31 @@ on:
     branches:
     - main
 
+env:
+  GLOBAL_VALUE: "this is a env variable from the global level"
+
 jobs:
   build-test:
     name: 'First Job'
 
     runs-on: ubuntu-latest
 
+    env:
+      JOB_VALUE: "this is a env variable from the JOB level"
+
     steps:
     - name: Say hello world 1
       shell: bash
+      env:
+        STEP_VALUE_1: "this is a env variable from the STEP level #1"
       run: |
-        echo "Hello world from step 1"
+        echo "GLOBAL: $GLOBAL_VALUE"
+        echo "JOB: $JOB_VALUE"
+        echo "STEP_VALUE_1: $STEP_VALUE_1"
+        echo "STEP_VALUE_2: $STEP_VALUE_2"
     - name: Say hello world 2
       shell : pwsh
+      env:
+        STEP_VALUE_2: "this is a env variable from the STEP level #2"
       run: |
         echo "Hello world from step 2"
