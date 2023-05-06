@@ -1,32 +1,71 @@
 name: 'Basic'
 
-on: [ 'push', 'pull_request' ]
+on:
+  push:
+    branches:
+    - main
 
 jobs:
-  first:
-    name: 'First Job'
-    if: github.event_name = 'pull_request'
+  build-test:
+    name: 'build Job'
 
-    strategy:
-      matrix:
-        os: [ 'windows-latest', 'macos-latest', 'ubuntu-latest' ]
-        node: [ '16.x', '18.x' ]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Say Hello from OS - ${{ matrix.os}}
+    - name: Hello World
       shell: bash
       run: |
-        echo :"Hello World from ${{ matrix.os}}"
+        echo "Hello World"
 
-    - name: Setup node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '${{ matrix.node }}'
+  dev:
+    name: 'dev Job'
+    needs:
+    - build-test
 
-    - name: Run only on Ubuntu
-      if: matrix.os == 'ubuntu-latest'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Hello World
       shell: bash
       run: |
-        echo "Hello from ${{ matrix.os }}"
+        echo "Hello World"
+
+  test1:
+    name: 'Test1 Job'
+    needs:
+    - dev
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Hello World
+      shell: bash
+      run: |
+        echo "Hello World"
+  
+  test2:
+    name: 'Test2 Job'
+    needs:
+    - dev
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Hello World
+      shell: bash
+      run: |
+        echo "Hello World"
+
+  prod:
+    name: 'production Job'
+    needs:
+    - test1
+    - test2
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Hello World
+      shell: bash
+      run: |
+        echo "Hello World"
